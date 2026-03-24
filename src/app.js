@@ -5,6 +5,7 @@ const cors = require('cors')
 
 // 2. Importação das rotas (AGORA COM REQUIRE)
 const roomsRoutes = require('./routes/RoomsRoutes')
+const companiesRoutes = require('./routes/CompaniesRoutes')
 
 // Prisma
 const prisma = require('./lib/prisma')
@@ -36,6 +37,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 // ==========================================
 
 app.use('/rooms', roomsRoutes);
+app.use('/companies', companiesRoutes)
 
 app.get('/', (req, res) => {
   res.json({ mensagem: "🚀 API Express funcionando com Postgres e Neon!" });
