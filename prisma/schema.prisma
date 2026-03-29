@@ -10,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 model USER {
   id String @id @default(cuid())
@@ -54,6 +53,7 @@ model Room {
 
   capexSegurancaValor        Float @default(15000)
   capexBalancaValor          Float @default(20000)
+  capexFreezerValor          Float @default(20000)
   capexRedesValor            Float @default(18000)
   capexSiteValor             Float @default(25000)
   capexSelfCheckoutValor     Float @default(40000)
@@ -111,7 +111,7 @@ model CompanyConfig {
   operadoresServico Int @default(0)
 
   capexSeguranca        Boolean @default(false)
-  capexBalanca          Boolean @default(false)
+  capexBalanca         Boolean @default(false)
   capexRedes            Boolean @default(false)
   capexSite             Boolean @default(false)
   capexSelfCheckout     Boolean @default(false)

@@ -4,11 +4,24 @@ const { createRoom, getRoomByCode, cancelRoom, startRoom }= require ('../service
 async function handleCreateRoom(req, res) {
   try {
     const { caixa, juros, totalRounds, quebrasPereciveis,
-    quebrasMercearia, quebrasEletro,quebrasHipel,agingEletro,agingHipel,agingMercearia,agingPereciveis, 
+    quebrasMercearia, quebrasEletro,quebrasHipel,agingEletro,agingHipel,agingMercearia,agingPereciveis,
+     custoUntPereciveis,
+  custoUntMercearia,
+  custoUntEletro,
+  custoUntHipel,
+   capexSegurancaValor,
+  capexBalancaValor,
+  capexFreezerValor ,
+  capexRedesValor,
+  capexSiteValor ,
+  capexSelfCheckoutValor,
+  capexMelhoriaContinuaValor,
     impostoPereciveis, impostoMercearia, impostoEletro, impostoHipel, events} = req.body
 
     const room = await createRoom({ caixa, juros, totalRounds, quebrasPereciveis,
     quebrasMercearia, quebrasEletro,quebrasHipel,agingEletro,agingHipel,agingMercearia,agingPereciveis, 
+    capexBalancaValor, capexFreezerValor, capexMelhoriaContinuaValor, capexRedesValor, capexSegurancaValor, capexSelfCheckoutValor, capexSiteValor,
+    custoUntPereciveis, custoUntMercearia, custoUntHipel, custoUntEletro,
     impostoPereciveis, impostoMercearia, impostoEletro, impostoHipel, events})
 
     return res.status(201).json({
