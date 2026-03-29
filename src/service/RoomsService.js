@@ -3,7 +3,15 @@ const { generateRoomCode } =  require('../utils/generateRoomCode.js')
 
 async function createRoom({ caixa, juros, totalRounds, quebrasPereciveis,
     quebrasMercearia, quebrasEletro,quebrasHipel,agingEletro,agingHipel,agingMercearia,agingPereciveis, 
-    impostoPereciveis, impostoMercearia, impostoEletro, impostoHipel,custoUntPereciveis, custoUntMercearia,custoUntEletro, custoUntHipel, events }) {
+     capexSegurancaValor,
+  capexBalancaValor,
+  capexFreezerValor ,
+  capexRedesValor,
+  capexSiteValor ,
+  capexSelfCheckoutValor,
+  capexMelhoriaContinuaValor,
+    impostoPereciveis, impostoMercearia, impostoEletro, impostoHipel,custoUntPereciveis, custoUntMercearia,custoUntEletro, custoUntHipel,
+    events }) {
   const code = generateRoomCode()
  
   const room = await prisma.room.create({
@@ -24,10 +32,17 @@ async function createRoom({ caixa, juros, totalRounds, quebrasPereciveis,
       impostoMercearia:  impostoMercearia  ?? 7,
       impostoEletro:     impostoEletro     ?? 25,
       impostoHipel:      impostoHipel      ?? 17,
-      custoUntPereciveis: custoUntPereciveis ?? 0,
-      custoUntMercearia:  custoUntMercearia ?? 0,
-      custoUntEletro:    custoUntEletro    ?? 0,     
-      custoUntHipel:    custoUntHipel     ?? 0,     
+      custoUntPereciveis: custoUntPereciveis ,
+      custoUntMercearia:  custoUntMercearia ,
+      custoUntEletro:    custoUntEletro     ,   
+      custoUntHipel:    custoUntHipel    ,   
+       capexSegurancaValor: capexSegurancaValor,
+  capexBalancaValor: capexBalancaValor,
+  capexFreezerValor: capexFreezerValor ,
+  capexRedesValor: capexRedesValor,
+  capexSiteValor: capexSiteValor ,
+  capexSelfCheckoutValor: capexSelfCheckoutValor,
+  capexMelhoriaContinuaValor: capexMelhoriaContinuaValor,  
       events: {
         create: events?.map(({ round, type, description }) => ({
           round,
