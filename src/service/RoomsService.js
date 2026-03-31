@@ -10,6 +10,10 @@ async function createRoom({ caixa, juros, totalRounds, quebrasPereciveis,
   capexSiteValor ,
   capexSelfCheckoutValor,
   capexMelhoriaContinuaValor,
+  estoqueDisponivelPereciveis ,
+  estoqueDisponivelMercearia ,
+  estoqueDisponivelEletro  ,
+  estoqueDisponivelHipel  ,
     impostoPereciveis, impostoMercearia, impostoEletro, impostoHipel,custoUntPereciveis, custoUntMercearia,custoUntEletro, custoUntHipel,
     events }) {
   const code = generateRoomCode()
@@ -43,6 +47,10 @@ async function createRoom({ caixa, juros, totalRounds, quebrasPereciveis,
   capexSiteValor: capexSiteValor ,
   capexSelfCheckoutValor: capexSelfCheckoutValor,
   capexMelhoriaContinuaValor: capexMelhoriaContinuaValor,  
+  estoqueDisponivelPereciveis: estoqueDisponivelPereciveis ?? 1000,
+  estoqueDisponivelMercearia: estoqueDisponivelMercearia ?? 1000,
+  estoqueDisponivelEletro: estoqueDisponivelEletro ?? 1000,
+  estoqueDisponivelHipel: estoqueDisponivelHipel ?? 1000,
       events: {
         create: events?.map(({ round, type, description }) => ({
           round,
