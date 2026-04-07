@@ -179,6 +179,10 @@ async function handleGetRank(req, res) {
           deixouDeVenderMercearia: true,
           deixouDeVenderEletro: true,
           deixouDeVenderHipel: true,
+          receitaPereciveis: true,
+          receitaMercearia: true,
+          receitaHipel: true,
+          receitaEletro: true
 
         }
       })
