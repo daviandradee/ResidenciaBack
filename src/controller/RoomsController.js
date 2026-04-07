@@ -135,6 +135,7 @@ async function handleStartRoom(req, res) {
 async function handleGetRank(req, res) {
   try {
     const { code, round } = req.params
+    const companyId = req.query.companyId || req.query.companyID
 
     const rank = await prisma.roundResult.findMany({
       where: {
@@ -142,11 +143,11 @@ async function handleGetRank(req, res) {
         company: { room: { code } }
       },
       select: {
-        id: true,
         round: true,
         receitaTotal: true,
         company: {
           select: {
+            id:true,
             name: true,
             managerName: true,
           }
@@ -156,8 +157,34 @@ async function handleGetRank(req, res) {
         receitaTotal: 'desc'
       }
     })
+    let meuResultado = null 
+    if(companyId) {
+      meuResultado = await prisma.roundResult.findUnique({
+        where: {
+          companyId_round: {
+            companyId,
+            round: parseInt(round)
+          }
+        },
+        select: {
+          precoMedioCesta: true,
+          disponibilidade: true,
+          csat: true,
+          percentualDemanda: true,
+          qtdVendidaPereciveis: true,
+          qtdVendidaMercearia: true,
+          qtdVendidaEletro: true,
+          qtdVendidaHipel: true,
+          deixouDeVenderPereciveis: true,
+          deixouDeVenderMercearia: true,
+          deixouDeVenderEletro: true,
+          deixouDeVenderHipel: true,
 
-    return res.status(200).json(rank)
+        }
+      })
+    }
+
+    return res.status(200).json({ rank, meuResultado })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ message: 'Erro ao buscar ranking.' })
